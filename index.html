@@ -5,10 +5,30 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Tym17.github.io</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <title>New Tab</title>
+    <script src="js/vue.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/init.js"></script>
+
 </head>
 
 <body>
-    <h1>TabMark</h1>
+    <div class="container">
+        <div id="app" class="row">
+            <input v-model="newLink" v-on:keyup.enter="addNewLink" placeholder="Add a new link" class="col-lg-12"/>
+            <!-- Marked Item -->
+            <div class="col-lg-3" v-for="(marked, index) in markeds" v-on:remove="say('hehe')">
+                <div class="marked">
+                        <a class="btn btn-warning btn-block" v-bind:href="marked.link">{{index}}</a>
+                        <button class="btn btn-danger btn-block" v-on:click="markeds.splice(index, 1)">X</button>
+                </div>
+        </div>
+        <!-- End Marked Item -->
+
+    </div>
+    </div>
+    <script src="js/app.js"></script>
 </body>
+
 </html>
