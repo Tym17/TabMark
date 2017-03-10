@@ -16,17 +16,19 @@
 <body>
     <div class="container">
         <div id="app" class="row">
-            <input v-model="newLink" v-on:keyup.enter="addNewLink" placeholder="Add a new link" class="col-lg-12"/>
-            <!-- Marked Item -->
-            <div class="col-lg-3" v-for="(marked, index) in markeds" v-on:remove="say('hehe')">
-                <div class="marked">
-                        <a class="btn btn-warning btn-block" v-bind:href="marked.link">{{index}}</a>
-                        <button class="btn btn-danger btn-block" v-on:click="markeds.splice(index, 1)">X</button>
-                </div>
-        </div>
-        <!-- End Marked Item -->
 
-    </div>
+            <!-- Marked Item -->
+            <div class="col-lg-3" v-for="(marked, index) in markeds">
+                <div class="marked">
+                    <a class="btn btn-warning btn-block" v-bind:href="marked.link">{{marked.name}}</a>
+                    <button class="btn btn-danger btn-block" v-on:click="removeLink(index)">{{index}} - X</button>
+                </div>
+            </div>
+            <!-- End Marked Item -->
+
+            <input v-model="newMark.name" placeholder="Name" class="col-lg-12"/>
+            <input v-model="newMark.link" v-on:keyup.enter="addNewLink" placeholder="Add a new link" class="col-lg-12"/>
+        </div>
     </div>
     <script src="js/app.js"></script>
 </body>

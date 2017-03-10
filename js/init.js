@@ -12,3 +12,5 @@ function storageAvailable(type) {
         return false;
     }
 }
+
+var localStorageAvaible = storageAvailable('localStorage');
