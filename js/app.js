@@ -12,16 +12,28 @@ var app = new Vue({
         say: function(msg) {
             alert(msg);
         },
+        sortLinks: function() {
+            this.markeds.sort(function (a, b) {
+                var nA = a.name.toUpperCase();
+                var nB = b.name.toUpperCase();
+
+                if (nA < nB) { return -1; }
+                if (nA > nB) { return 1; }
+                return 0;
+            });
+            return this.markeds;
+        },
         addNewLink: function() {
             this.markeds.push({
                 link: this.newMark.link,
                 name: this.newMark.name
             });
+            var mark = this.markeds[this.markeds.length - 1];
 
             // if possible, store it
             if (localStorageAvaible)
             {
-                localStorage.setItem('mark-'+ (this.markeds.length - 1), [this.newMark.name, this.newMark.link].join());
+                localStorage.setItem('mark-'+ mark.name, mark.link);
             }
 
             // reset new mark
@@ -29,13 +41,15 @@ var app = new Vue({
                 link: '',
                 name: ''
             };
+            this.sortLinks();
         },
         removeLink: function(index) {
             if (localStorageAvaible)
             {
-                localStorage.removeItem('mark-'+index);
+                localStorage.removeItem('mark-'+this.markeds[index].name);
             }
             this.markeds.splice(index, 1);
+            this.sortLinks();
         },
         fetchLinks: function() {
             if (localStorageAvaible)
@@ -44,14 +58,14 @@ var app = new Vue({
                 {
                     if (localStorage.key(i).split('-')[0] === 'mark')
                     {
-                        var item = localStorage.getItem(localStorage.key(i)).split(',');
                         this.markeds.push({
-                            name: item[0],
-                            link: item[1]
+                            name: localStorage.key(i).split('-')[1],
+                            link: localStorage.getItem(localStorage.key(i))
                         });
                     }
                 }
             }
+            this.sortLinks();
         }
     }
 });

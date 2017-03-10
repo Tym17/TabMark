@@ -18,7 +18,7 @@
         <div id="app" class="row">
 
             <!-- Marked Item -->
-            <div class="col-lg-3" v-for="(marked, index) in markeds">
+            <div class="col-lg-3" v-for="(marked, index) in sortLinks()">
                 <div class="marked">
                     <a class="btn btn-warning btn-block" v-bind:href="marked.link">{{marked.name}}</a>
                     <button class="btn btn-danger btn-block" v-on:click="removeLink(index)">{{index}} - X</button>
