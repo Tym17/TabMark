@@ -24,6 +24,12 @@ var app = new Vue({
             return this.markeds;
         },
         addNewLink: function() {
+            if (this.newMark.link.length == 0 ||
+                this.newMark.name.length == 0)
+            {
+                return;
+            }
+
             this.markeds.push({
                 link: this.newMark.link,
                 name: this.newMark.name
