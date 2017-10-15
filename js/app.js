@@ -57,6 +57,15 @@ var app = new Vue({
             this.markeds.splice(index, 1);
             this.sortLinks();
         },
+        editLink: function(index) {
+            if (localStorageAvaible)
+            {
+                localStorage.removeItem('mark-'+this.markeds[index].name);
+            }
+            this.newMark = this.markeds[index];
+            this.markeds.splice(index, 1);
+            this.sortLinks();
+        },
         fetchLinks: function() {
             if (localStorageAvaible)
             {

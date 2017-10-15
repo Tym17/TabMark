@@ -23,6 +23,7 @@
                 <div class="marked">
                     <a class="" v-bind:href="marked.link">{{marked.name}}</a>
                     <span class="remove" v-on:click="removeLink(index)">X</span>
+                    <span class="edit" v-on:click="editLink(index)">edit</span>
                 </div>
             </div>
             <!-- End Marked Item -->
